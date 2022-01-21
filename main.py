@@ -11,6 +11,9 @@ from turtle import width
 from unicodedata import name
 
 
+
+
+
 # Defining Functions:
 
 #Defining Add Contact Function
@@ -65,6 +68,15 @@ def SEarch(event):
         treetable.insert('' , END , values = row)
     conn.close()
 
+def Reset():
+    FNM.set('')
+    LNM.set('')
+    EML.set('')
+    PHN.set('')
+    ADR.set('')
+
+
+
 
 # < Creating a Container >
 root = tkinter.Tk()    # < main function for tkinter GUI >
@@ -74,32 +86,44 @@ root.resizable(0,0) # < not resizable on any directions >
 root.title('Project - AddressBook') # < Title for the project >
 
 
+#Assigning string variables ((for textvariables) used for Reset command )
+
+FNM = StringVar()
+LNM  = StringVar()
+EML = StringVar()
+PHN = StringVar()
+ADR = StringVar()
+
+
+
+# Creating Label and Entry boxes inside container(box)
+
 lbTitle = Label(root, text = "ADDRESS BOOK", font=("Arial", 25), bg="darkblue", fg="white", bd="5").place(x=1, y=1, width=848)
 
-lbSearch = Label(root, text = "Search:", font=("Arial", 15), bg="darkblue", fg="white", bd="1",width=10).place(x=645, y=65)
+lbSearch = Label(root, text = "Search", font=("Arial", 15), bg="darkblue", fg="white", bd="1",width=10).place(x=645, y=65)
 entrySearch = Entry (root,font=("Arial",14))
 entrySearch.bind("<Return>" , SEarch)
 entrySearch.place(x=545, y=105, width=295, height=30)
 
 
 lbFirstName = Label(root, text = "First Name", font=("Arial", 20), bg="darkblue", fg="white", bd="1", width=12).place(x=10,y=75)
-entryFirstName = Entry (root,bd="3", font=("Arial",16))
+entryFirstName = Entry (root,bd="3", font=("Arial",16), textvariable = FNM)
 entryFirstName.place(x=210, y=75, width=300, height=35)
 
 lbLastName = Label(root, text = "Last Name", font=("Arial", 20), bg="darkblue", fg="white", bd="1", width=12).place(x=10,y=115)
-entryLastName = Entry (root, bd="3", font=("Arial",16))
+entryLastName = Entry (root, bd="3", font=("Arial",16), textvariable = LNM)
 entryLastName.place(x=210, y=115, width=300, height=35)
 
 lbEmail = Label(root, text = "Email", font=("Arial", 20), bg="darkblue", fg="white", bd="1", width=12).place(x=10,y=155)
-entryEmail = Entry (root,bd="3", font=("Arial",16))
+entryEmail = Entry (root,bd="3", font=("Arial",16), textvariable = EML)
 entryEmail.place(x=210, y=155, width=300, height=35)
 
 lbPhone = Label(root, text = "Phone", font=("Arial", 20), bg="darkblue", fg="white", bd="1", width=12).place(x=10,y=195)
-entryPhone = Entry (root,bd="3", font=("Arial",16))
+entryPhone = Entry (root,bd="3", font=("Arial",16), textvariable = PHN)
 entryPhone.place(x=210, y=195, width=300, height=35)
 
 lbAddress = Label(root, text = "Address", font=("Arial", 20), bg="darkblue", fg="white", bd="1", width=12).place(x=10,y=235)
-entryAddress = Entry (root,bd="3", font=("Arial",16))
+entryAddress = Entry (root,bd="3", font=("Arial",16), textvariable = ADR)
 entryAddress.place(x=210, y=235, width=300, height=35)
 
 
@@ -111,8 +135,8 @@ btAdd.place(x=555, y=160, width=130)
 btModify = Button(root, text="MODIFY",font=("arial",18,font.BOLD), bd="5", command= 'modify')
 btModify.place(x=555, y=230, width=130)
 
-btView = Button(root, text="VIEW",font=("arial",18,font.BOLD), bd="5",command='View')
-btView.place(x=710, y=160, width=130)
+btReset = Button(root, text="RESET",font=("arial",18,font.BOLD), bd="5",command= Reset)
+btReset.place(x=710, y=160, width=130)
 
 btDelete = Button(root, text="DELETE",font=("arial",18,font.BOLD), bd="5",command= deletecontact)
 btDelete.place(x=710, y=230, width=130)
